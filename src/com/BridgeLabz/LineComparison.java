@@ -1,14 +1,15 @@
 package com.BridgeLabz;
 import java.util.*;
+import java.lang.Double;
 
 public class LineComparison {
 
-    double LinePQ(double x1, double x2, double y1, double y2) {
+    Double LinePQ(double x1, double x2, double y1, double y2) {
 
         double a=Math.pow(x2-x1, 2);
         double b=Math.pow(y2-y1, 2);
         double c= a*x1 + b*y1;
-        double length1=Math.sqrt(a+b);
+        Double length1=Math.sqrt(a+b);
 
         if (b < 0) {
             System.out.println(
@@ -25,12 +26,12 @@ public class LineComparison {
         return length1;
     }
 
-    double LineRS(double x3, double x4, double y3, double y4) {
+    Double LineRS(double x3, double x4, double y3, double y4) {
 
         double a=Math.pow(x4-x3, 2);
         double b=Math.pow(y4-y3, 2);
         double c= a*x3 + b*y3;
-        double length2=Math.sqrt(a+b);
+        Double length2=Math.sqrt(a+b);
 
         if (b < 0) {
             System.out.println(
@@ -66,13 +67,16 @@ public class LineComparison {
         LineComparison objPQ=new LineComparison();
         LineComparison objRS=new LineComparison();
 
-        boolean lineCheck  = Objects.equals(objPQ.LinePQ(x1, x2, y1, y2), objRS.LineRS(x3, x4, y3, y4));
+        int lineCheck = objRS.LineRS(x3, x4, y3, y4).compareTo(objPQ.LinePQ(x1, x2, y1, y2));
 
-        if (lineCheck == true)
-            System.out.println("The lines PQ and RS are equal");
-        else
-            System.out.println("PQ and RS are not equal");
-
+        if (lineCheck == 0){
+            System.out.println("Lines PQ and RS are equal");
+        }
+        else if (lineCheck > 0) {
+            System.out.println("Line RS is greater than line PQ");
+        }
+        else {
+            System.out.println("line PQ is greater than line RS");
+        }
     }
 }
-
